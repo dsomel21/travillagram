@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+const wundergroudKey = '81c856477b240ea8';
 
 export default class SearchBar extends Component {
 	
@@ -16,13 +17,13 @@ export default class SearchBar extends Component {
 		});
 	}
 
-	handleSearchAction(e){
-		console.log(e.target.value);	
+	onFormSubmit(e){
+		e.preventDefault();	
 	}
 
 	render() {
 		return (
-			<form className="input-group">
+			<form onSubmit={this.onFormSubmit} className="input-group">
 				<input 
 					placeholder="Toronto, ON"
 					className="form-control"
@@ -30,8 +31,7 @@ export default class SearchBar extends Component {
 					// onChange={(e) => this.onInputChange(e)}	
 					onChange={this.onInputChange}	
 				/>
-				<button type="button" className="btn btn-secondary"
-					onClick={this.handleSearchAction}>Search</button>
+				<button type="button" className="btn btn-secondary">Search</button>
 			</form>
 		)
 	}
