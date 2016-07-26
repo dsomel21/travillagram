@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Sparklines, SparklinesLine } from 'react-sparklines'
+import Chart from '../components/weather_chart';
 
 class WeatherList extends Component {
 
@@ -8,14 +8,25 @@ class WeatherList extends Component {
 		/* Must have a return statement, stop forgetting */
 		const id = cityData.city.id;
 		const temps = cityData.list.map(weather => weather.main.temp);
-		// console.log(temps)
-		// const temps = cityData.list.map(weather => weather.main.temp)
+		const pressure = cityData.list.map(weather => weather.main.pressure);
+		const humidity = cityData.list.map(weather => weather.main.humidity);
+		debugger;
+
 
 
 		return (
 			/* Key always goes in TOP-LEVEL element */
 			<tr key={id}>
 				<td>{cityData.city.name}</td>
+				<td>
+					<Chart data={temps} color='blue' />
+				</td>
+				<td>
+					<Chart data={pressure} color='red' />
+				</td>
+				<td>
+					<Chart data={humidity} color='orange' />
+				</td>
 			</tr>
 		)
 	}
