@@ -22,7 +22,6 @@ class SearchBar extends Component {
 	}
 
 	onFormSubmit(e){
-		console.log('tatti shu shu ')
 		e.preventDefault();	
 		/*Fetch Data based on the stateof the search query and the clear it*/
 		this.props.getWeather(this.state.search_query);

@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Sparklines, SparklinesLine } from 'react-sparklines'
 
 class WeatherList extends Component {
 
-	renderWeather(cityData) {
+	renderWeatherElements(cityData){
+		/* Must have a return statement, stop forgetting */
+		const id = cityData.city.id;
+		const temps = cityData.list.map(weather => weather.main.temp);
+		// console.log(temps)
+		// const temps = cityData.list.map(weather => weather.main.temp)
 
+
+		return (
+			/* Key always goes in TOP-LEVEL element */
+			<tr key={id}>
+				<td>{cityData.city.name}</td>
+			</tr>
+		)
 	}
 
 	render() {
@@ -19,14 +32,14 @@ class WeatherList extends Component {
 					</tr>
 				</thead>
 				<tbody>
-					{this.props.weather.map(this.renderWeather)}
+					{this.props.weather.map(this.renderWeatherElements)}
 				</tbody>
 			</table>
 		)
 	}
 }
 
-mapStateToProps( {weather} ){
+function mapStateToProps( {weather} ){
 	// Use state.weather because in index reducer, the key was weather
 	return { weather }
 }
